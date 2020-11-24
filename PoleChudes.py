@@ -15,7 +15,20 @@ def get_question():
         return answer, question
 
 
-    
+def play_again():
+    not_recived = True
+    while not_recived:
+        answer = input('Хотите сыграть еще раз? (Y/N)')
+        if answer == 'y'.lower() or answer == 'н'.lower():
+            not_recived = False
+            play_game()
+        elif answer == 'n'.lower() or answer == 'т'.lower():
+            not_recived = False
+        else:
+            print('Введите (Y/N): ')
+
+
+
 def play_game():
     print('Start')     
     answer, question = get_question()
@@ -47,18 +60,13 @@ def play_game():
                     user_answer=''.join(curent_view)
         else:
             guesses +=1
-            print('Такой буквы нет!')
+            print('Такой буквы нет!','Осталось попыток:', 5-guesses)
         if user_answer == answer:
             print('Вы правильно назвали все буквы!')
             answered = True
             break
         print(user_answer)
-    if (answered):
-            play_game()
+    if answered == False:
+        print('Правильный ответ был '+ str(answer))
+    play_again()
 play_game()
-
-
-
-    
-   
-        
